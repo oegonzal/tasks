@@ -1,0 +1,48 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const auth_service_1 = __importDefault(require("../services/auth.service"));
+class AuthController {
+    constructor() {
+        this.authService = new auth_service_1.default();
+        this.signUp = async (req, res, next) => {
+            try {
+                const userData = req.body;
+                const signUpUserData = await this.authService.signup(userData);
+                res.status(201).json({ data: signUpUserData, message: 'signup' });
+            }
+            catch (error) {
+                next(error);
+            }
+        };
+        this.logIn = async (req, res, next) => {
+            try {
+                const userData = req.body;
+                const { cookie, findUser } = await this.authService.login(userData);
+                //  Remove password for safety reasons & in new object to prevent removing local password state
+                const returnUser = Object.assign({}, findUser);
+                delete returnUser.password;
+                res.setHeader('Set-Cookie', [cookie]);
+                res.status(200).json({ data: returnUser, message: 'Successfully logged in' });
+            }
+            catch (error) {
+                next(error);
+            }
+        };
+        this.logOut = async (req, res, next) => {
+            try {
+                const userData = req.user;
+                const logOutUserData = await this.authService.logout(userData);
+                res.setHeader('Set-Cookie', ['Authorization=; Max-age=0']);
+                res.status(200).json({ data: logOutUserData, message: 'logout' });
+            }
+            catch (error) {
+                next(error);
+            }
+        };
+    }
+}
+exports.default = AuthController;
+//# sourceMappingURL=auth.controller.js.map

@@ -1,0 +1,136 @@
+tags:
+- name: tasks
+  description: tasks API
+
+paths:
+# [GET] tasks
+  /tasks:
+    get:
+      tags:
+      - tasks
+      summary: Find All Tasks
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] tasks
+    post:
+      tags:
+      - tasks
+      summary: Add Task
+      parameters:
+      - name: body
+        in: body
+        description: task Data
+        required: true
+        schema:
+          $ref: '#/definitions/tasks'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] tasks/id
+  /tasks/{id}:
+    get:
+      tags:
+      - tasks
+      summary: Find Task By Id
+      parameters:
+      - name: id
+        in: path
+        description: Task Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] tasks/id
+    put:
+      tags:
+      - tasks
+      summary: Update Task By Id
+      parameters:
+      - name: id
+        in: path
+        description: task Id
+        required: true
+        type: integer
+      - name: body
+        in: body
+        description: task Data
+        required: true
+        schema:
+          $ref: '#/definitions/tasks'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] tasks/id
+    delete:
+      tags:
+      - tasks
+      summary: Delete Task By Id
+      parameters:
+      - name: id
+        in: path
+        description: task Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  tasks:
+    type: object
+    required:
+        - title
+        - description
+        - completed
+        - due
+        - userId
+    properties:
+      id:
+        type: integer
+        description: task Id
+      title:
+        type: string
+        description: task Title
+      description:
+        type: string
+        description: task Description
+      due:
+        type: date
+        description: task Due Date 
+      userId:
+        type: integer
+        description: task userId
+      
+
+schemes:
+ - https
+ - http
