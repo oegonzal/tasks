@@ -1,14 +1,14 @@
 
 Server:
-cd server
-npm install
-npm run dev
+-   cd server
+-   npm install
+-   npm run dev
 -   Should run on port 3000
 
 Client:
-cd client
-npm install
-npm start
+-   cd client
+-   npm install
+-   npm start
 -   Should run on port 3001
 
 NOTE:
