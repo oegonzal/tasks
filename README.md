@@ -48,7 +48,7 @@
 
 -   **Typescript:** In order to build a central and transparent source of data representation. Typescript is a good option to prevent dataflow that loses it's identity down a logic process as is the case in typeless languages and that can lead to many bugs when a project increases in complexity.
 
-
+-   **Linters:** To automate editing and formatting among different people working on project
 
 
 ## Improvements
@@ -59,3 +59,22 @@
 
 -   **Testing:** With more time I would make more tests to test the server API with user sessions and CRUD operations. I would also add tests to make sure the UI displays the task list correctly after making operations to individual taks or adding new tasks.
 
+
+
+
+## Production ready improvements
+
+-   **Minification & bundling, lazyloading**
+-   **CDN for static files**
+-   **Actual DB with better datastructures for data scalability like Indexing algos (In this case, a NoSql db would do it bc tasks can be encapsulated together**
+-   **Deployment service with actual CI/CD**
+-   **Paging and batch calls**
+-   **Cross-origin security, Cross-site request forgery**
+-   **Caching**
+-   **Form validation & sanitation**
+-   **Global ui components to represent state like loading or error messages to users**
+-   **Logging/ Crash analytics**
+
+
+
+ß
