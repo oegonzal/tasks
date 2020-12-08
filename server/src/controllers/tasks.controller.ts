@@ -32,9 +32,10 @@ class IndexController {
   public createTask = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const taskData: CreateTaskDto = req.body;
-      const createTaskData: TaskItem = await this.taskService.createTask(taskData);
+      // const createTaskData: TaskItem = await this.taskService.createTask(taskData);
 
-      res.status(201).json({ data: createTaskData, message: 'created' });
+      // res.status(201).json({ data: createTaskData, message: 'created' });
+      res.status(200).json({ message: "Success" });  // TEMPORARY: for testing webhooks on TS side
     } catch (error) {
       next(error);
     }
@@ -42,6 +43,7 @@ class IndexController {
 
   public updateTask = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
+      //  if req.user.id !== res.param.userId return res.forbidden()
       const userId = Number(req.params.userId);
       const taskData: TaskItem = req.body;
       const updateTaskData: TaskItem[] = await this.taskService.updateTask(userId, taskData);

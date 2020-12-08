@@ -35,7 +35,6 @@ beforeEach(() => {
             .split(',')
             .map(item => item.split(';')[0])
             .join(';');
-        console.log("SESSION: ", session);
         expect(res.status).toEqual(200);
     });
 });

@@ -40,6 +40,7 @@ class IndexController {
         };
         this.updateTask = async (req, res, next) => {
             try {
+                //  if req.user.id !== res.param.userId return res.forbidden()
                 const userId = Number(req.params.userId);
                 const taskData = req.body;
                 const updateTaskData = await this.taskService.updateTask(userId, taskData);
